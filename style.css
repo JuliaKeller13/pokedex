@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at top left, #191b2c, transparent 60%),
+    radial-gradient(circle at bottom right, #091922, transparent 60%),
+    linear-gradient(135deg, #0f1020, #15162b);
+  background-attachment: fixed;
+}
+
+.body-content {
+  max-width: 1440px;
+  width: 100%;  
+  margin: 0 auto;
+  flex: 1;
+}
+
+header{
+  height: 100px;
+  background-color: #16233b;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.header-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1920px;
+  height: 100%;
+  margin: 0 5% 0 5%;
+  color: white;
+}
+
+.cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 100px 40px;
+}

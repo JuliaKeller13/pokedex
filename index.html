@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/card.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <h1>Pokedex</h1>
+        <search>
+          <label>
+            Find a Pokemon
+            <input type="search" id="query" />
+          </label>
+        </search>
+      </div>
+    </header>
+    <main>
+      <section class="cards-container" id="cardsContainer">
+        <div class="card" id="card">
+          <div class="card-inner" id="cardInner">
+            <div class="card-content">
+              <div class="headline">
+                <h2>Pikachu</h2>
+              </div>
+              <div class="img-container">
+                <img
+                  class="card-img"
+                  src="./assets/pikachu.png"
+                  alt="Pokemonname"
+                />
+              </div>
+              <div class="card-info">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </div>
+            </div>
+            <div class="card-border">
+              <div class="border-row top">
+                <div class="dot"></div>
+                <div class="rectangle horizontal"></div>
+                <div class="dot"></div>
+              </div>
+
+              <div class="side-bar left">
+                <div class="rectangle vertical"></div>
+              </div>
+              <div class="side-bar right">
+                <div class="rectangle vertical"></div>
+              </div>
+
+              <div class="border-row bottom">
+                <div class="dot"></div>
+                <div class="rectangle horizontal"></div>
+                <div class="dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

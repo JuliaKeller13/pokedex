@@ -1,0 +1,156 @@
+.card {
+  width: 310px;
+  height: 420px;
+  background: #333547;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  display:flex;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 10%,
+    rgba(255, 255, 255, 0.2) 25%,
+    rgba(0, 255, 255, 0.1) 40%,
+    rgba(255, 0, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0.2) 75%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  background-size: 200% 200%;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.card:hover::after {
+  background-position: 100% 100%;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px #2b2f55;
+  cursor: pointer;
+}
+
+/* card border  */
+.card-border {
+  position: absolute;
+  inset: 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.border-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.side-bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.side-bar.left {
+  left: 15px;
+}
+
+.side-bar.right {
+  right: 15px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 15px white;
+}
+
+.rectangle {
+  background: white;
+  box-shadow: 0 0 15px white;
+  border-radius: 3px;
+}
+
+.horizontal {
+  width: 80px;
+  height: 5px;
+}
+
+.vertical {
+  width: 5px;
+  height: 80px;
+}
+
+/* card content */
+.card-inner{
+    height: 100%;
+    flex: 1;
+    display: flex;
+}
+
+.card-content {
+  background-color: #54598a77;
+  background-image: url('../assets/stardust.png');
+  clip-path: polygon(
+    20px 0%,
+    calc(100% - 20px) 0%,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0% calc(100% - 20px),
+    0% 20px
+  );
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.headline{
+    background-color: #a7a7ac7a;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.img-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.card-img {
+  width: auto;
+  height: 250px;
+}
+
+.card-info{
+    background-color: #a7a7ac7a;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
