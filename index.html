@@ -7,23 +7,28 @@
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/png" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/card.css" />
+    <link rel="stylesheet" href="./styles/buttons.css" />
   </head>
   <body onload="init()">
     <header>
       <div class="header-inner">
-        <h1>Pokedex</h1>
-        <search>
-          <label>
-            Find a Pokemon
-            <input type="search" id="query" />
-          </label>
+        <div class="logo-box">
+          <img class="logo" src="./assets/pokeball.png" alt="Pokeball" />
+          <h1>Pokedex</h1>
+        </div>
+        <search class="search">
+          <label for="inputSearchPkmn">Find a Pokémon:</label>
+          <input
+            type="search"
+            id="inputSearchPkmn"
+            autocomplete="off"
+          />
         </search>
       </div>
     </header>
     <main>
-      <section class="cards-container" id="cardsContainer">
-      </section>
-        <button onclick="fetchData()">Load more Pokémons</button>
+      <section class="cards-container" id="cardsContainer"></section>
+      <button class="load-btn" onclick="fetchData()">Load more Pokémons</button>
     </main>
     <script src="./script.js"></script>
   </body>

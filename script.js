@@ -1,7 +1,6 @@
 let allPokemonData = [];
 let currentOffset = 0;
-const limit = 30;
-
+const limit = 28;
 function init() {
   fetchData();
 }
@@ -34,18 +33,19 @@ async function renderCards() {
 
 function getCardsHTML(pokemon) {
   const image = pokemon.sprites.other["official-artwork"].front_default;
+  const type = pokemon.types[0].type.name;
   
   return `<div class="card" id="card">
           <div class="card-inner" id="cardInner">
             <div class="card-content">
-              <div class="headline">
+              <div class="headline type-${type}">
                 <h2>#${pokemon.id} ${pokemon.name}</h2>
               </div>
               <div class="img-container">
                 <img class="card-img" src="${image}" alt="${pokemon.name}"/>
               </div>
-              <div class="card-info">
-                <p>Type: ${pokemon.types[0].type.name}</p>
+              <div class="card-info type-${type}">
+                <p>Type: ${type}</p>
               </div>
             </div>
             <div class="card-border">

@@ -150,12 +150,12 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.37) inset;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2) inset;
 }
 
 .card-img {
   width: auto;
-  height: 200px;
+  height: 210px;
 }
 
 .card-info {
@@ -163,4 +163,82 @@
   text-align: center;
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+/* type colors for pokemon cards */
+.type-normal {
+  background-color: #a8a77a5b;
+  box-shadow: 0 0 12px #a8a77a inset;
+}
+.type-fighting {
+  background-color: #c22d2848;
+  box-shadow: 0 0 12px #c22d28 inset;
+}
+.type-flying {
+  background-color: #aa8ff352;
+  box-shadow: 0 0 12px #aa8ff3 inset;
+}
+.type-poison {
+  background-color: #a33ea149;
+  box-shadow: 0 0 12px #a33ea1 inset;
+}
+.type-ground {
+  background-color: #e2bf6546;
+  box-shadow: 0 0 12px #e2bf65 inset;
+}
+.type-rock {
+  background-color: #b6a13646;
+  box-shadow: 0 0 12px #b6a136 inset;
+}
+.type-bug {
+  background-color: #a6b91a44;
+  box-shadow: 0 0 12px #a6b91a inset;
+}
+.type-ghost {
+  background-color: #73579736;
+  box-shadow: 0 0 12px #735797 inset;
+}
+.type-steel {
+  background-color: #b7b7ce4d;
+  box-shadow: 0 0 12px #b7b7ce inset;
+}
+.type-fire {
+  background-color: #ee823044;
+  box-shadow: 0 0 12px #ee8230 inset;
+}
+.type-water {
+  background-color: #6390f052;
+  box-shadow: 0 0 12px #6390f0 inset;
+}
+.type-grass {
+  background-color: #79c74c46;
+  box-shadow: 0 0 12px #79c74c inset;
+}
+.type-electric {
+  background-color: #f7ce2c49;
+  box-shadow: 0 0 12px #f7ce2c inset;
+}
+.type-psychic {
+  background-color: #f9558633;
+  box-shadow: 0 0 12px #f95586 inset;
+}
+.type-ice {
+  background-color: #96d9d63a;
+  box-shadow: 0 0 12px #96d9d6 inset;
+}
+.type-dark {
+  background-color: #70574634;
+  box-shadow: 0 0 12px #705746 inset;
+}
+.type-fairy {
+  background-color: #d685ad3d;
+  box-shadow: 0 0 12px #d685ad inset;
+}
+.type-stellar {
+  background-color: #d1f7f53f;
+  box-shadow: 0 0 12px #d1f7f5 inset;
+}
+.type-unknown {
+  background-color: #3838388a;
+  box-shadow: 0 0 12px #383838 inset;
 }
