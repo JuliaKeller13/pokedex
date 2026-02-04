@@ -50,5 +50,5 @@ main{
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  padding: 100px 40px;
+  padding: 100px 5px;
 }

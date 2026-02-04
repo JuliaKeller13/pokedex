@@ -1,6 +1,6 @@
 .card {
-  width: 310px;
-  height: 420px;
+  width: 290px;
+  height: 350px;
   background: #333547;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -11,7 +11,8 @@
   padding: 20px;
   position: relative;
   overflow: hidden;
-  display:flex;
+  display: flex;
+  transition: transform 0.3s ease;
 }
 
 .card::after {
@@ -42,6 +43,7 @@
 .card:hover {
   box-shadow: 0 0 20px #656c8a;
   cursor: pointer;
+  transform: scale(1.03);
 }
 
 /* card border  */
@@ -109,14 +111,14 @@
 }
 
 /* card content */
-.card-inner{
-    height: 100%;
-    flex: 1;
-    display: flex;
+.card-inner {
+  height: 100%;
+  flex: 1;
+  display: flex;
 }
 
 .card-content {
-  background-image: url('../assets/stardust.png');
+  background-image: url("../assets/stardust.png");
   clip-path: polygon(
     20px 0%,
     calc(100% - 20px) 0%,
@@ -134,12 +136,12 @@
   flex: 1;
 }
 
-.headline{
-    background-color: #a7a7ac7a;
-    text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    text-transform: capitalize;
+.headline {
+  background-color: #a7a7ac7a;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  text-transform: capitalize;
 }
 
 .img-container {
@@ -148,16 +150,17 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.37) inset;
 }
 
 .card-img {
   width: auto;
-  height: 250px;
+  height: 200px;
 }
 
-.card-info{
-    background-color: #a7a7ac7a;
-    text-align: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
+.card-info {
+  background-color: #a7a7ac7a;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }

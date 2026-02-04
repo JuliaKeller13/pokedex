@@ -32,7 +32,6 @@ async function renderCards() {
   }
 }
 
-
 function getCardsHTML(pokemon) {
   const image = pokemon.sprites.other["official-artwork"].front_default;
   
