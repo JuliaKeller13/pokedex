@@ -1,3 +1,7 @@
+function init(){
+    fetchData();
+}
+
 async function fetchData(){
     const response = await fetch('https://pokeapi.co/api/v2/pokemon-species/pikachu');
     const responseAsJson = await response.json(); 
@@ -8,7 +12,7 @@ async function fetchData(){
 
 function renderCards(responseAsJson){
     const cardsContainerRef = document.getElementById('cardsContainer');
-    cardsContainerRef.innerHTML = '';
+    // cardsContainerRef.innerHTML = '';
     responseAsJson.forEach((arrayElement) => {
             cardsContainerRef.innerHTML += getCardsHTML(arrayElement);
         })
