@@ -39,8 +39,15 @@ header{
   color: white;
 }
 
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .cards-container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   padding: 100px 40px;

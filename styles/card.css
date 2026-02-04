@@ -40,7 +40,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 0 20px #2b2f55;
+  box-shadow: 0 0 20px #656c8a;
   cursor: pointer;
 }
 
@@ -56,10 +56,17 @@
   z-index: 10;
 }
 
-.border-row {
+.border-row-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.border-row-botom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
 }
 
@@ -109,7 +116,6 @@
 }
 
 .card-content {
-  background-color: #54598a77;
   background-image: url('../assets/stardust.png');
   clip-path: polygon(
     20px 0%,
@@ -133,6 +139,7 @@
     text-align: center;
     padding-top: 8px;
     padding-bottom: 8px;
+    text-transform: capitalize;
 }
 
 .img-container {
