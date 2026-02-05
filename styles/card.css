@@ -65,7 +65,7 @@
   width: 100%;
 }
 
-.border-row-botom {
+.border-row-bottom {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
