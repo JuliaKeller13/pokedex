@@ -4,14 +4,12 @@ let currentOffset = 0;
 const limit = 20;
 
 function init() {
-  fetchAllPkmnNames();
+  // fetchAllPkmnNames();
   fetchData();
 }
 
 async function fetchData() {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`,
-  );
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`);
   const responseAsJson = await response.json();
   const pkmnsList = responseAsJson.results; //only name and url
 
@@ -84,6 +82,7 @@ function getCardsHTML(pokemon) {
 //   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
 //   const responseAsJson = await response.json();
 //   const allPkmns = responseAsJson.results;
+
 //   const search = document.getElementById("inputSearchPkmn").value.toLowerCase();
 //   const filteredPkmns = allPkmns.filter((pokemon) =>
 //     pokemon.name.toLowerCase().includes(search),

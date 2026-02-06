@@ -3,13 +3,7 @@
   padding: 0;
 }
 
-html,
 body {
-  height: 100%;
-}
-
-body {
-  min-height: 100vh;
   background-image:
     radial-gradient(circle at top left, #191b2c, transparent 60%),
     radial-gradient(circle at bottom right, #091922, transparent 60%),
