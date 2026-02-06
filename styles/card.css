@@ -54,7 +54,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  pointer-events: none;
   z-index: 10;
 }
 

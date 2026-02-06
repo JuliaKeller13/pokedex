@@ -1,29 +1,36 @@
 let allPokemonData = [];
-// let allNamesList = [];
+let allPkmnsNamesList = [];
 let currentOffset = 0;
 const limit = 20;
 
 function init() {
-  // fetchAllPkmnNames();
+  fetchAllPkmnNames();
   fetchData();
 }
 
+async function fetchAllPkmnNames() {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+  const responseAsJson = await response.json();
+  allPkmnsNamesList = responseAsJson.results; 
+}
+
 async function fetchData() {
+  showLoadingSpinner();
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`);
   const responseAsJson = await response.json();
-  const pkmnsList = responseAsJson.results; //only name and url
+  const pkmnsList = responseAsJson.results; //name and url
 
   for (let i = 0; i < pkmnsList.length; i++) {
     const detailResponse = await fetch(pkmnsList[i].url);
     const pkmnsDetailAsJson = await detailResponse.json();
-    allPokemonData.push(pkmnsDetailAsJson); //data from personal url for every pkmn
+    allPokemonData.push(pkmnsDetailAsJson); //data from personal url
   }
-
+  disableLoadingSpinner();
   currentOffset += limit;
   renderCards();
 }
 
-async function renderCards() {
+function renderCards() {
   const cardsContainerRef = document.getElementById("cardsContainer");
   cardsContainerRef.innerHTML = "";
 
@@ -34,59 +41,37 @@ async function renderCards() {
   }
 }
 
-function getCardsHTML(pokemon) {
-  const image = pokemon.sprites.other["official-artwork"].front_default;
-  // const image = pokemon.sprites.other["showdown"].front_default; es gibt gifs, bei dialog verwenden?
-  const type = pokemon.types[0].type.name;
-  const type2 = pokemon.types[1]?.type.name;
+//search
+document.getElementById("inputSearchPkmn").addEventListener("input", searchPkmn);
 
-  return `<div class="card" id="card">
-          <div class="card-inner" id="cardInner">
-            <div class="card-content">
-              <div class="headline type-${type}">
-                <h2>#${pokemon.id} ${pokemon.name}</h2>
-              </div>
-              <div class="img-container">
-                <img class="card-img" src="${image}" alt="${pokemon.name}"/>
-              </div>
-              <div class="card-info type-${type}">
-                <p>Type: ${type} ${type2 ? ", " + type2 : ""}</p>
-              </div>
-            </div>
-            <div class="card-border">
-              <div class="border-row-top">
-                <div class="dot"></div>
-                <div class="rectangle horizontal"></div>
-                <div class="dot"></div>
-              </div>
+async  function searchPkmn() {
+  const search = document.getElementById("inputSearchPkmn").value.toLowerCase();
+  const cardsContainerRef = document.getElementById("cardsContainer");
+  cardsContainerRef.innerHTML = "";
 
-              <div class="side-bar left">
-                <div class="rectangle vertical"></div>
-              </div>
-              <div class="side-bar right">
-                <div class="rectangle vertical"></div>
-              </div>
+  if (search.length < 3) {
+    renderCards();
+    return;
+  }
 
-              <div class="border-row-bottom">
-                <div class="dot"></div>
-                <div class="rectangle horizontal"></div>
-                <div class="dot"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-            `;
+  const filteredPkmns = allPkmnsNamesList.filter(pokemon =>
+    pokemon.name.includes(search));
+
+  for (let i = 0; i < filteredPkmns.length; i++) {
+  const pokemon = filteredPkmns[i];
+
+  const response = await fetch(pokemon.url);
+  const filteredPkmnsData = await response.json();
+  cardsContainerRef.innerHTML += getCardsHTML(filteredPkmnsData);
+  }
 }
 
-// async function fetchAllPkmnNames() {
-//   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
-//   const responseAsJson = await response.json();
-//   const allPkmns = responseAsJson.results;
+function showLoadingSpinner(){
+  document.getElementById("spinner").classList.remove("d-none");
+}
 
-//   const search = document.getElementById("inputSearchPkmn").value.toLowerCase();
-//   const filteredPkmns = allPkmns.filter((pokemon) =>
-//     pokemon.name.toLowerCase().includes(search),
-//   );
-//   console.log(filteredPkmns);
-  
-// }
+function disableLoadingSpinner(){
+  document.getElementById("spinner").classList.add("d-none");
+}
+
+//navigation
