@@ -37,7 +37,7 @@ function renderCards() {
 
   for (let i = 0; i < allPokemonData.length; i++) {
     const pokemon = allPokemonData[i];
-    // console.log(pokemon);
+    console.log(pokemon);
     cardsContainerRef.innerHTML += getCardsHTML(pokemon);
   }
 }
@@ -75,5 +75,5 @@ function showLoadingSpinner(){
 
 function disableLoadingSpinner(){
   document.getElementById("spinner").classList.add("d-none");
-  document.getElementById("load-btn").innerText = "Load more Pokémons";
+  document.getElementById("load-btn").innerText = "Load Pokémons";
 }
