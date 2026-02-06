@@ -26,6 +26,7 @@ async function fetchData() {
     allPokemonData.push(pkmnsDetailAsJson); //data from personal url
   }
   disableLoadingSpinner();
+  document.getElementById("load-btn").disabled = false;
   currentOffset += limit;
   renderCards();
 }
@@ -59,7 +60,6 @@ async  function searchPkmn() {
 
   for (let i = 0; i < filteredPkmns.length; i++) {
   const pokemon = filteredPkmns[i];
-
   const response = await fetch(pokemon.url);
   const filteredPkmnsData = await response.json();
   cardsContainerRef.innerHTML += getCardsHTML(filteredPkmnsData);
@@ -68,10 +68,13 @@ async  function searchPkmn() {
 
 function showLoadingSpinner(){
   document.getElementById("spinner").classList.remove("d-none");
+  document.getElementById("load-btn").disabled = true;
+  document.getElementById("load-btn").innerText = "Loading...";
 }
 
 function disableLoadingSpinner(){
   document.getElementById("spinner").classList.add("d-none");
+  document.getElementById("load-btn").innerText = "Load more Pokémons";
 }
 
 //navigation

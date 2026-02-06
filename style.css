@@ -78,7 +78,7 @@ h2 {
   color: white;
   box-sizing: border-box;
   animation: animloader 1s linear infinite alternate;
-  margin-bottom: 60px;
+  margin-top: 60px;
 }
 
 @keyframes animloader {
