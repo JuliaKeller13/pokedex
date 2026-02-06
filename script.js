@@ -66,6 +66,7 @@ async  function searchPkmn() {
   }
 }
 
+//navigation
 function showLoadingSpinner(){
   document.getElementById("spinner").classList.remove("d-none");
   document.getElementById("load-btn").disabled = true;
@@ -76,5 +77,3 @@ function disableLoadingSpinner(){
   document.getElementById("spinner").classList.add("d-none");
   document.getElementById("load-btn").innerText = "Load more Pokémons";
 }
-
-//navigation
