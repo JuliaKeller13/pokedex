@@ -1,6 +1,6 @@
 .card {
-  width: 290px;
-  height: 350px;
+  width: 250px;
+  height: 330px;
   background: #333547;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -154,7 +154,7 @@
 
 .card-img {
   width: auto;
-  height: 210px;
+  height: 180px;
 }
 
 .card-info {

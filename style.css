@@ -48,9 +48,9 @@ header {
 
 main {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 0 5px 100px 5px;
 }
 
@@ -59,8 +59,12 @@ main {
   justify-content: center;
   flex-wrap: wrap;
   gap: 35px;
-  padding: 100px 5px;
+  padding: min(3em, 8%) 5px;
   max-width: 1920px;
+}
+
+h1{
+  font-size: clamp(1.3rem, calc(2vw + 1rem), 3rem);
 }
 
 h2 {
@@ -68,7 +72,7 @@ h2 {
 }
 
 /* loading spinner screen*/
-.spinner-container{
+.spinner-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,27 +102,33 @@ h2 {
 
 .loader-pokeball::after {
   background:
-    radial-gradient(at 75% 15%,#fffb,#0000 35%),
-    radial-gradient(at 80% 40%,#0000,#0008),
-    radial-gradient(circle  8px,#fff 94%,#0000),
-    radial-gradient(circle 11px,#000 94%,#0000),
-    linear-gradient(#F93318 0 0) top   /100% calc(50% - 5px),
-    linear-gradient(#fff    0 0) bottom/100% calc(60% - 5px)
-    #000;
+    radial-gradient(at 75% 15%, #fffb, #0000 35%),
+    radial-gradient(at 80% 40%, #0000, #0008),
+    radial-gradient(circle 8px, #fff 94%, #0000),
+    radial-gradient(circle 11px, #000 94%, #0000),
+    linear-gradient(#f93318 0 0) top / 100% calc(50% - 5px),
+    linear-gradient(#fff 0 0) bottom/100% calc(60% - 5px) #000;
   background-repeat: no-repeat;
-  animation: l20 1s infinite cubic-bezier(0.5,120,0.5,-120);
+  animation: l20 1s infinite cubic-bezier(0.5, 120, 0.5, -120);
 }
 
 .loader-pokeball::before {
-  background:#000000ab;
+  background: #000000ab;
   filter: blur(5px);
   transform: scaleY(0.3) translate(-2px, 20px);
 }
 
-@keyframes l20 { 
- 30%,70% {transform:rotate(0deg)}
- 49.99%  {transform:rotate(0.2deg)}
- 50%     {transform:rotate(-0.2deg)}
+@keyframes l20 {
+  30%,
+  70% {
+    transform: rotate(0deg);
+  }
+  49.99% {
+    transform: rotate(0.2deg);
+  }
+  50% {
+    transform: rotate(-0.2deg);
+  }
 }
 
 .loader {
@@ -126,7 +136,7 @@ h2 {
   height: 12px;
   border-radius: 50%;
   display: block;
-  margin:15px auto;
+  margin: 15px auto;
   position: relative;
   color: white;
   box-sizing: border-box;
@@ -136,23 +146,64 @@ h2 {
 
 @keyframes animloader {
   0% {
-    box-shadow: -38px -12px ,  -14px 0,  14px 0, 38px 0;
+    box-shadow:
+      -38px -12px,
+      -14px 0,
+      14px 0,
+      38px 0;
   }
   33% {
-    box-shadow: -38px 0px, -14px -12px,  14px 0, 38px 0;
+    box-shadow:
+      -38px 0px,
+      -14px -12px,
+      14px 0,
+      38px 0;
   }
   66% {
-    box-shadow: -38px 0px , -14px 0, 14px -12px, 38px 0;
+    box-shadow:
+      -38px 0px,
+      -14px 0,
+      14px -12px,
+      38px 0;
   }
   100% {
-    box-shadow: -38px 0 , -14px 0, 14px 0 , 38px -12px;
+    box-shadow:
+      -38px 0,
+      -14px 0,
+      14px 0,
+      38px -12px;
   }
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
-.of-hidden{
+.of-hidden {
   overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+  header {
+    height: auto;
+    padding: 15px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  label {
+    margin-right: 0;
+  }
+
+  .logo {
+    height: 50px;
+  }
 }

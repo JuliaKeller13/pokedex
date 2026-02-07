@@ -13,7 +13,6 @@ async function fetchAllPkmnNames() {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
   const responseAsJson = await response.json();
   allPkmnsNamesList = responseAsJson.results;
-  disableLoadingSpinner();
 }
 
 async function fetchData() {
@@ -27,7 +26,7 @@ async function fetchData() {
     const pkmnsDetailAsJson = await detailResponse.json();
     allPokemonData.push(pkmnsDetailAsJson); //data from personal url
   }
-  disableLoadingSpinner();
+  
   document.getElementById("load-btn").disabled = false;
   currentOffset += limit;
   renderCards();
@@ -36,12 +35,13 @@ async function fetchData() {
 function renderCards() {
   const cardsContainerRef = document.getElementById("cardsContainer");
   cardsContainerRef.innerHTML = "";
-
+  
   for (let i = 0; i < allPokemonData.length; i++) {
     const pokemon = allPokemonData[i];
     console.log(pokemon);
-    cardsContainerRef.innerHTML += getCardsHTML(pokemon);
+    cardsContainerRef.innerHTML += getCardsHTML(pokemon);//wir alles neu gerendet, nicht portionsweise, verbessern
   }
+  disableLoadingSpinner();
 }
 
 //search
@@ -52,7 +52,7 @@ async  function searchPkmn() {
   const cardsContainerRef = document.getElementById("cardsContainer");
   cardsContainerRef.innerHTML = "";
 
-  if (search.length < 3) {
+  if (search.length < 4) {
     renderCards();
     return;
   }
