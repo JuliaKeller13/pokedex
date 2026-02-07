@@ -56,10 +56,9 @@ async  function searchPkmn() {
     renderCards();
     return;
   }
-
   const filteredPkmns = allPkmnsNamesList.filter(pokemon =>
     pokemon.name.includes(search));
-  
+
   if (filteredPkmns === "") {
     cardsContainerRef.innerHTML = `<p class="message">Oops! We didn't find anything that matches <span>${search}</span>. Try to find another Pokemon.</p>`;
   }
@@ -83,9 +82,6 @@ function disableLoadingSpinner(){
   document.getElementById("body").classList.remove("of-hidden");
 }
 
-//TODO
-//Dialog mit More data
-// Bild im Großformat, Name und Nummer vom Bild anzeigen
 function openWindow(index) {
   currentCardIndex = index;
   // document.getElementById("dialogTitle").innerText += `Hallo`;
@@ -98,25 +94,13 @@ function closeWindow() {
   dialogRef.close();
 }
 
-// // vorheriges/nächstes Bild im Dialog
-// function previousImg() {
-//   currentCardIndex = (currentCardIndex - 1 + imgs.length) % imgs.length;
-//   openWindow(currentCardIndex);
-// }
-
-// function nextImg() {
-//   currentCardIndex = (currentCardIndex + 1) % imgs.length;
-//   openWindow(currentCardIndex);
-// }
-
-// Dialog schließen, wenn man auf backdrop clickt
 function handleDialogClick(event) {
-  if (!event.target.closest(".dialog-mode-inner")) { //closest sucht nach außen Element mit dieser ID, gibt true zurück (mit ! wird die Aussage auf false gesetzt). Event.targen hat Wert eines clicks (z.B. auf img ist <img>)
+  if (!event.target.closest(".dialog-mode-inner")) {
     closeWindow();
   }
 }
 
-dialogRef.addEventListener("click", handleDialogClick); //Wenn irgendwo im Dialog geklickt wird, wird die Funktion handleDialogClick aufgerufen
+dialogRef.addEventListener("click", handleDialogClick);
 
 //Keyboard fuction global
 function handleKey(event, action) {
@@ -126,12 +110,13 @@ function handleKey(event, action) {
   }
 }
 
-//Dialog schließen
 document.getElementById("closeDialog")
   .addEventListener("keydown", function (e) {
     handleKey(e, closeWindow);
   });
 
+//TODO
+//Dialog mit More data
 // // Pfeiltastensteuerung
 // document.addEventListener("keydown", function (event) {
 
@@ -147,3 +132,14 @@ document.getElementById("closeDialog")
 //     nextImg();
 //   }
 // });
+
+// // vorheriges/nächstes Bild im Dialog
+// function previousImg() {
+//   currentCardIndex = (currentCardIndex - 1 + imgs.length) % imgs.length;
+//   openWindow(currentCardIndex);
+// }
+
+// function nextImg() {
+//   currentCardIndex = (currentCardIndex + 1) % imgs.length;
+//   openWindow(currentCardIndex);
+// }
