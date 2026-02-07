@@ -1,10 +1,10 @@
-function getCardsHTML(pokemon) {
+function getCardsHTML(pokemon, i) {
   const image = pokemon.sprites.other["official-artwork"].front_default;
   // const image = pokemon.sprites.other["showdown"].front_default; es gibt gifs, bei dialog verwenden?
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types[1]?.type.name;
 
-  return `<div class="card" id="card" tabindex="0">
+  return `<div class="card" id="card" tabindex="0" onclick="openWindow(${i})" onkeydown="handleKey(event, function () { openWindow(${i}); })">
             <div class="card-inner" id="cardInner">
                 <div class="card-content">
                     <div class="headline type-${type}">

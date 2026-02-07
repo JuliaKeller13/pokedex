@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex</title>
-    <link rel="shortcut icon" href="./assets/favicon.png" type="image/png" />
+    <link rel="shortcut icon" href="./assets/pokeball.png" type="image/png" />
+    <link rel="stylesheet" href="./styles/small-card.css" />
+    <link rel="stylesheet" href="./styles/button-search.css" />
+    <link rel="stylesheet" href="./styles/dialog.css">
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/card.css" />
-    <link rel="stylesheet" href="./styles/buttons.css" />
   </head>
   <body onload="init()" id="body">
     <header>
@@ -17,19 +18,50 @@
           <h1>Pokedex</h1>
         </div>
         <search class="search">
-          <input type="search" id="inputSearchPkmn" autocomplete="off" placeholder="Find a Pokémon..."/>
+          <input
+            type="search"
+            id="inputSearchPkmn"
+            autocomplete="off"
+            placeholder="Find a Pokémon..."
+          />
         </search>
       </div>
     </header>
     <main>
       <section class="cards-container" id="cardsContainer"></section>
-        <button id="load-btn" class="load-btn" onclick="fetchData()">
-          Load Pokémons
-        </button>
+      <button id="load-btn" class="load-btn" onclick="fetchData()">
+        Load Pokémons
+      </button>
       <div class="spinner-container d-none" id="spinner">
         <div class="loader-pokeball"></div>
         <span class="loader"></span>
       </div>
+      <section class="dialog-container">
+        <dialog class="dialog-mode d-none" id="dialogMode" aria-labelledby="dialogTitel" aria-describedby="dialogDescription">
+        <div class="dialog-mode-inner">
+          <header>
+            <div class="header-inner-dialog">
+              <h2>Title</h2>
+              <img class="close-btn" id="closeDialog" src="./assets/close.png" alt="Kreuz zum Fenster schließen"
+                onclick="closeWindow()" tabindex="0">
+            </div>
+          </header>
+          <section class="dialog-content">
+            <div id="bigCardInfo"></div>
+          </section>
+          <footer>
+            <!-- <div class="footer-inner-dialog">
+              <img class="previous-img" id="previousImg" src="./assets/left.png" alt="previous card"
+                onclick="previousImg()" tabindex="0">
+              <div class="img-number" id="imgNumber"></div>
+              <img class="next-img" id="nextImg" src="./assets/rigth.png" alt="next card"
+                onclick="nextImg()" tabindex="0">
+            </div> -->
+          </footer>
+        </div>
+      </dialog>
+      </section>
+        
     </main>
     <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>

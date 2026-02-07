@@ -1,0 +1,42 @@
+.dialog-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-mode {
+  width: 700px;
+  height: 500px;
+  background: #33354798;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+dialog::backdrop {
+  background-color: #0c0c169f;
+  backdrop-filter: blur(15px);
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+.dialog-mode-inner {
+}
+
+.header-inner-dialog {
+}
+
+.close-btn {
+  height: 40px;
+}

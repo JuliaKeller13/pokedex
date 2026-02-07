@@ -1,7 +1,9 @@
 let allPokemonData = [];
 let allPkmnsNamesList = [];
 let currentOffset = 0;
+let currentCardIndex = 0;
 const limit = 40;
+const dialogRef = document.getElementById("dialogMode");
 
 function init() {
   fetchAllPkmnNames();
@@ -38,7 +40,7 @@ function renderCards() {
   for (let i = 0; i < allPokemonData.length; i++) {
     const pokemon = allPokemonData[i];
     console.log(pokemon);
-    cardsContainerRef.innerHTML += getCardsHTML(pokemon);//wird alles neu gerendet, nicht portionsweise, verbessern
+    cardsContainerRef.innerHTML += getCardsHTML(pokemon, i);//wird alles neu gerendet, nicht portionsweise, verbessern
   }
   disableLoadingSpinner();
 }
@@ -50,17 +52,15 @@ async  function searchPkmn() {
   const search = document.getElementById("inputSearchPkmn").value.toLowerCase();
   const cardsContainerRef = document.getElementById("cardsContainer");
   cardsContainerRef.innerHTML = "";
-
   if (search.length < 4) {
     renderCards();
     return;
   }
 
-
   const filteredPkmns = allPkmnsNamesList.filter(pokemon =>
     pokemon.name.includes(search));
   
-  if (filteredPkmns == "") {
+  if (filteredPkmns === "") {
     cardsContainerRef.innerHTML = `<p class="message">Oops! We didn't find anything that matches <span>${search}</span>. Try to find another Pokemon.</p>`;
   }
 
@@ -83,5 +83,67 @@ function disableLoadingSpinner(){
   document.getElementById("body").classList.remove("of-hidden");
 }
 
-//TODO Meldund wenn nichts gefunden ist
+//TODO
 //Dialog mit More data
+// Bild im Großformat, Name und Nummer vom Bild anzeigen
+function openWindow(index) {
+  currentCardIndex = index;
+  // document.getElementById("dialogTitle").innerText += `Hallo`;
+  dialogRef.classList.remove("d-none");
+  dialogRef.showModal();
+}
+
+function closeWindow() {
+  dialogRef.classList.add("d-none");
+  dialogRef.close();
+}
+
+// // vorheriges/nächstes Bild im Dialog
+// function previousImg() {
+//   currentCardIndex = (currentCardIndex - 1 + imgs.length) % imgs.length;
+//   openWindow(currentCardIndex);
+// }
+
+// function nextImg() {
+//   currentCardIndex = (currentCardIndex + 1) % imgs.length;
+//   openWindow(currentCardIndex);
+// }
+
+// Dialog schließen, wenn man auf backdrop clickt
+function handleDialogClick(event) {
+  if (!event.target.closest(".dialog-mode-inner")) { //closest sucht nach außen Element mit dieser ID, gibt true zurück (mit ! wird die Aussage auf false gesetzt). Event.targen hat Wert eines clicks (z.B. auf img ist <img>)
+    closeWindow();
+  }
+}
+
+dialogRef.addEventListener("click", handleDialogClick); //Wenn irgendwo im Dialog geklickt wird, wird die Funktion handleDialogClick aufgerufen
+
+//Keyboard fuction global
+function handleKey(event, action) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    action();
+  }
+}
+
+//Dialog schließen
+document.getElementById("closeDialog")
+  .addEventListener("keydown", function (e) {
+    handleKey(e, closeWindow);
+  });
+
+// // Pfeiltastensteuerung
+// document.addEventListener("keydown", function (event) {
+
+//   if (!dialogRef.open) return;//weiter nur, wenn Dialog geöffnet ist
+
+//   if (event.key === "ArrowLeft") {
+//     event.preventDefault();
+//     previousImg();
+//   }
+
+//   if (event.key === "ArrowRight") {
+//     event.preventDefault();
+//     nextImg();
+//   }
+// });

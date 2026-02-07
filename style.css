@@ -188,10 +188,6 @@ h2 {
   }
 }
 
-.d-none {
-  display: none;
-}
-
 .of-hidden {
   overflow: hidden;
 }
@@ -215,4 +211,8 @@ h2 {
   .logo {
     height: 50px;
   }
+}
+
+.d-none {
+  display: none;
 }
