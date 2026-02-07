@@ -27,7 +27,6 @@ async function fetchData() {
     allPokemonData.push(pkmnsDetailAsJson); //data from personal url
   }
   
-  document.getElementById("load-btn").disabled = false;
   currentOffset += limit;
   renderCards();
 }
@@ -39,7 +38,7 @@ function renderCards() {
   for (let i = 0; i < allPokemonData.length; i++) {
     const pokemon = allPokemonData[i];
     console.log(pokemon);
-    cardsContainerRef.innerHTML += getCardsHTML(pokemon);//wir alles neu gerendet, nicht portionsweise, verbessern
+    cardsContainerRef.innerHTML += getCardsHTML(pokemon);//wird alles neu gerendet, nicht portionsweise, verbessern
   }
   disableLoadingSpinner();
 }
@@ -57,8 +56,13 @@ async  function searchPkmn() {
     return;
   }
 
+
   const filteredPkmns = allPkmnsNamesList.filter(pokemon =>
     pokemon.name.includes(search));
+  
+  if (filteredPkmns == "") {
+    cardsContainerRef.innerHTML = `<p class="message">Oops! We didn't find anything that matches <span>${search}</span>. Try to find another Pokemon.</p>`;
+  }
 
   for (let i = 0; i < filteredPkmns.length; i++) {
   const pokemon = filteredPkmns[i];
@@ -78,3 +82,6 @@ function disableLoadingSpinner(){
   document.getElementById("spinner").classList.add("d-none");
   document.getElementById("body").classList.remove("of-hidden");
 }
+
+//TODO Meldund wenn nichts gefunden ist
+//Dialog mit More data

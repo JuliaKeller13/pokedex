@@ -22,7 +22,6 @@ header {
   position: sticky;
   top: 0;
   z-index: 400;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
 }
 
 .logo-box {
@@ -69,6 +68,20 @@ h1{
 
 h2 {
   font-size: 1.2rem;
+}
+
+.message{
+  font-size: clamp(1.3rem, calc(0.8vw + 1rem), 2rem);
+  font-weight: 100;
+  text-align: center;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  margin: 20px;
+}
+
+.message span{
+  color: #e01f2f;
+  font-weight: 400;
 }
 
 /* loading spinner screen*/
@@ -197,10 +210,6 @@ h2 {
   .search {
     flex-direction: column;
     gap: 10px;
-  }
-
-  label {
-    margin-right: 0;
   }
 
   .logo {
