@@ -6,15 +6,12 @@
 }
 
 .load-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 15px 30px;
   cursor: pointer;
   font-family: "Segoe UI", sans-serif;
   font-weight: bold;
   font-size: 18px;
-  color: azure;
+  color: white;
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -35,16 +32,14 @@
 }
 
 label {
-  color: rgba(240, 255, 255, 0.7);
-  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  display: flex;
-  flex-direction: column;
   margin-right: 10px;
+  font-size: 20px;
 }
 
 .search input {
+  all: unset;
   width: 300px;
   padding: 10px 20px;
   background: rgba(255, 255, 255, 0.05);
@@ -56,6 +51,6 @@ label {
 
 .search input:focus {
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.849);
+  border-color: white;
   box-shadow: 0 0 20px rgba(101, 108, 138, 0.4);
 }

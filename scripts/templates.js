@@ -4,7 +4,7 @@ function getCardsHTML(pokemon) {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types[1]?.type.name;
 
-  return `<div class="card" id="card">
+  return `<div class="card" id="card" tabindex="0">
             <div class="card-inner" id="cardInner">
                 <div class="card-content">
                     <div class="headline type-${type}">

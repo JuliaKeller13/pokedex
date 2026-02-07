@@ -1,7 +1,7 @@
 let allPokemonData = [];
 let allPkmnsNamesList = [];
 let currentOffset = 0;
-const limit = 20;
+const limit = 40;
 
 function init() {
   fetchAllPkmnNames();
@@ -9,9 +9,11 @@ function init() {
 }
 
 async function fetchAllPkmnNames() {
+  showLoadingSpinner();
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
   const responseAsJson = await response.json();
-  allPkmnsNamesList = responseAsJson.results; 
+  allPkmnsNamesList = responseAsJson.results;
+  disableLoadingSpinner();
 }
 
 async function fetchData() {
@@ -66,14 +68,13 @@ async  function searchPkmn() {
   }
 }
 
-//navigation
+//overlay screen
 function showLoadingSpinner(){
-  document.getElementById("spinner").classList.remove("d-none");
-  document.getElementById("load-btn").disabled = true;
-  document.getElementById("load-btn").innerText = "Loading...";
+  document.getElementById("spinner").classList.remove("d-none");;
+  document.getElementById("body").classList.add("of-hidden");
 }
 
 function disableLoadingSpinner(){
   document.getElementById("spinner").classList.add("d-none");
-  document.getElementById("load-btn").innerText = "Load Pokémons";
+  document.getElementById("body").classList.remove("of-hidden");
 }
