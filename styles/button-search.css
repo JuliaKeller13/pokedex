@@ -57,3 +57,24 @@
   border-color: white;
   box-shadow: 0 0 20px rgba(101, 108, 138, 0.4);
 }
+
+.search-btn{
+  padding: 10px 30px;
+  cursor: pointer;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  margin-left: 20px;
+}
+
+.search-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.849);
+  box-shadow: 0 0 20px rgba(101, 108, 138, 0.4);
+}

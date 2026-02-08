@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="./assets/pokeball.png" type="image/png" />
     <link rel="stylesheet" href="./styles/small-card.css" />
     <link rel="stylesheet" href="./styles/button-search.css" />
-    <link rel="stylesheet" href="./styles/dialog.css">
+    <link rel="stylesheet" href="./styles/dialog.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="init()" id="body">
@@ -24,6 +24,7 @@
             autocomplete="off"
             placeholder="Find a Pokémon..."
           />
+          <button class="search-btn" onclick="searchPkmn()">Search</button>
         </search>
       </div>
     </header>
@@ -37,30 +38,13 @@
         <span class="loader"></span>
       </div>
       <section class="dialog-container">
-        <dialog class="dialog-mode d-none" id="dialogMode" aria-labelledby="dialogTitel" aria-describedby="dialogDescription">
-        <div class="dialog-mode-inner">
-          <header class="header-dialog">
-            <div class="header-dialog-inner">
-              <div id="dialogTitle"></div>
-              <img class="close-btn" id="closeDialog" src="./assets/close.png" alt="Kreuz zum Fenster schließen"
-                onclick="closeDialog()" tabindex="0">
-            </div> 
-          </header>
-          <section class="dialog-content">
-            <div id="bigCardInfo"></div>
-          </section>
-          <footer class="footer-dialog">
-            <div class="footer-dialog-inner">
-              <img class="arrow-btn" id="nextCard" src="./assets/left.png" alt="next card"
-                onclick="nextCard()" tabindex="0">
-              <img class="arrow-btn" id="previousCard" src="./assets/rigth.png" alt="previous card"
-                onclick="previousCard()" tabindex="0">
-            </div>
-          </footer>
-        </div>
-      </dialog>
+        <dialog
+          class="dialog-mode d-none"
+          id="dialogMode"
+          aria-labelledby="dialogTitel"
+          aria-describedby="dialogDescription"
+        ></dialog>
       </section>
-        
     </main>
     <script src="./scripts/templates.js"></script>
     <script src="./script.js"></script>

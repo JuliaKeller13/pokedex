@@ -1,5 +1,7 @@
 let allPokemonData = [];
 let allPkmnsNamesList = [];
+let currentSearchData = [];
+let isSearching = false;
 let currentOffset = 0;
 let currentCardIndex = 0;
 const limit = 40;
@@ -12,14 +14,18 @@ function init() {
 
 async function fetchAllPkmnNames() {
   showLoadingSpinner();
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`);
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`,
+  );
   const responseAsJson = await response.json();
   allPkmnsNamesList = responseAsJson.results;
 }
 
 async function fetchData() {
   showLoadingSpinner();
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`);
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`,
+  );
   const responseAsJson = await response.json();
   const pkmnsList = responseAsJson.results; //name and url
 
@@ -28,56 +34,74 @@ async function fetchData() {
     const pkmnsDetailAsJson = await detailResponse.json();
     allPokemonData.push(pkmnsDetailAsJson); //data from personal url
   }
-  
+
   currentOffset += limit;
   renderCards();
 }
 
 function renderCards() {
+  isSearching = false;
   const cardsContainerRef = document.getElementById("cardsContainer");
   cardsContainerRef.innerHTML = "";
-  
+
   for (let i = 0; i < allPokemonData.length; i++) {
     const pokemon = allPokemonData[i];
-    console.log(pokemon);
-    cardsContainerRef.innerHTML += getCardsHTML(pokemon, i);//wird alles neu gerendet, nicht portionsweise, verbessern
+    cardsContainerRef.innerHTML += getCardsHTML(pokemon, i);
   }
   disableLoadingSpinner();
 }
 
-//search
-document.getElementById("inputSearchPkmn").addEventListener("input", searchPkmn);
+function renderDialogCard(index) {
+  const dataSource = isSearching ? currentSearchData : allPokemonData;
+  const pokemon = dataSource[index];
+  dialogRef.innerHTML = getDialogInnerHTML(pokemon);
+}
 
-async  function searchPkmn() {
+//search
+async function searchPkmn() {
   const search = document.getElementById("inputSearchPkmn").value.toLowerCase();
   const cardsContainerRef = document.getElementById("cardsContainer");
-  cardsContainerRef.innerHTML = "";
-  if (search.length < 4) {
+
+  if (search.length < 3) {
+    isSearching = false;
     renderCards();
     return;
   }
-  const filteredPkmns = allPkmnsNamesList.filter(pokemon =>
-    pokemon.name.includes(search));
 
-  if (filteredPkmns === "") {
-    cardsContainerRef.innerHTML = `<p class="message">Oops! We didn't find anything that matches <span>${search}</span>. Try to find another Pokemon.</p>`;
+  const filteredResults = allPkmnsNamesList.filter((pokemon) =>
+    pokemon.name.includes(search),
+  );
+
+  cardsContainerRef.innerHTML = "";
+
+  if (filteredResults.length === 0) {
+  cardsContainerRef.innerHTML = `<p class="message">Oops! We didn't find anything that matches <span>${search}</span>. Try to find another Pokemon.</p>`;    return;
   }
 
-  for (let i = 0; i < filteredPkmns.length; i++) {
-  const pokemon = filteredPkmns[i];
-  const response = await fetch(pokemon.url);
-  const filteredPkmnsData = await response.json();
-  cardsContainerRef.innerHTML += getCardsHTML(filteredPkmnsData);
+  showLoadingSpinner();
+  isSearching = true;
+  currentSearchData = [];
+  let searchHTML = "";
+
+  for (let i = 0; i < filteredResults.length; i++) {
+    const response = await fetch(filteredResults[i].url);
+    const data = await response.json();
+
+    currentSearchData.push(data);
+    searchHTML += getCardsHTML(data, i);
   }
+
+  cardsContainerRef.innerHTML = searchHTML;
+  disableLoadingSpinner();
 }
 
 //overlay screen
-function showLoadingSpinner(){
-  document.getElementById("spinner").classList.remove("d-none");;
+function showLoadingSpinner() {
+  document.getElementById("spinner").classList.remove("d-none");
   document.getElementById("body").classList.add("of-hidden");
 }
 
-function disableLoadingSpinner(){
+function disableLoadingSpinner() {
   document.getElementById("spinner").classList.add("d-none");
   document.getElementById("body").classList.remove("of-hidden");
 }
@@ -86,22 +110,19 @@ function openDialog(index) {
   currentCardIndex = index;
   dialogRef.classList.remove("d-none");
   dialogRef.showModal();
+  renderDialogCard(currentCardIndex);
 }
 
 function closeDialog() {
-  dialogRef.classList.add("d-none");
   dialogRef.close();
+  dialogRef.classList.add("d-none");
 }
 
-function handleDialogClick(event) {
-  if (!event.target.closest(".dialog-mode-inner")) {
-    closeDialog();
-  }
-}
+dialogRef.addEventListener("click", (event) => {
+  if (event.target === dialogRef) closeDialog();
+});
 
-dialogRef.addEventListener("click", handleDialogClick);
-
-//Keyboard fuction global
+//control
 function handleKey(event, action) {
   if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
@@ -109,15 +130,8 @@ function handleKey(event, action) {
   }
 }
 
-document.getElementById("closeDialog").addEventListener("keydown", function (e) {
-  handleKey(e, closeDialog);
-  dialogRef.classList.add("d-none");
-});
-
-// Pfeiltastensteuerung
 document.addEventListener("keydown", function (event) {
-
-  if (!dialogRef.open) return;//weiter nur, wenn Dialog geöffnet ist
+  if (!dialogRef.open) return;
 
   if (event.key === "ArrowLeft") {
     event.preventDefault();
@@ -130,16 +144,14 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-// vorheriges/nächstes Bild im Dialog
 function previousCard() {
-  currentCardIndex = (currentCardIndex - 1 + allPokemonData.length) % allPokemonData.length;
-  openDialog(currentCardIndex);
+  const dataRef = isSearching ? currentSearchData : allPokemonData;
+  currentCardIndex = (currentCardIndex - 1 + dataRef.length) % dataRef.length;
+  renderDialogCard(currentCardIndex);
 }
 
 function nextCard() {
-  currentCardIndex = (currentCardIndex + 1) % allPokemonData.length;
-  openDialog(currentCardIndex);
+  const dataRef = isSearching ? currentSearchData : allPokemonData;
+  currentCardIndex = (currentCardIndex + 1) % dataRef.length;
+  renderDialogCard(currentCardIndex);
 }
-
-//TODO
-//Dialog mit More data
