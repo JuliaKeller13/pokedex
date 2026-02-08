@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body onload="init()" id="body">
-    <header>
+    <header class="header">
       <div class="header-inner">
         <div class="logo-box">
           <img class="logo" src="./assets/pokeball.png" alt="Pokeball" />
@@ -39,24 +39,23 @@
       <section class="dialog-container">
         <dialog class="dialog-mode d-none" id="dialogMode" aria-labelledby="dialogTitel" aria-describedby="dialogDescription">
         <div class="dialog-mode-inner">
-          <header>
-            <div class="header-inner-dialog">
-              <h2>Title</h2>
+          <header class="header-dialog">
+            <div class="header-dialog-inner">
+              <div id="dialogTitle"></div>
               <img class="close-btn" id="closeDialog" src="./assets/close.png" alt="Kreuz zum Fenster schließen"
-                onclick="closeWindow()" tabindex="0">
+                onclick="closeDialog()" tabindex="0">
             </div> 
           </header>
           <section class="dialog-content">
             <div id="bigCardInfo"></div>
           </section>
-          <footer>
-            <!-- <div class="footer-inner-dialog">
-              <img class="previous-img" id="previousImg" src="./assets/left.png" alt="previous card"
-                onclick="previousImg()" tabindex="0">
-              <div class="img-number" id="imgNumber"></div>
-              <img class="next-img" id="nextImg" src="./assets/rigth.png" alt="next card"
-                onclick="nextImg()" tabindex="0">
-            </div> -->
+          <footer class="footer-dialog">
+            <div class="footer-dialog-inner">
+              <img class="arrow-btn" id="nextCard" src="./assets/left.png" alt="next card"
+                onclick="nextCard()" tabindex="0">
+              <img class="arrow-btn" id="previousCard" src="./assets/rigth.png" alt="previous card"
+                onclick="previousCard()" tabindex="0">
+            </div>
           </footer>
         </div>
       </dialog>

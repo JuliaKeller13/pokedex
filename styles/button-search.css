@@ -26,6 +26,16 @@
   box-shadow: 0 0 20px rgba(101, 108, 138, 0.4);
 }
 
+.close-btn {
+  height: 40px;
+  cursor: pointer;
+}
+
+.arrow-btn{
+  height: 40px;
+  cursor: pointer;
+}
+
 .search {
   display: flex;
   align-items: center;

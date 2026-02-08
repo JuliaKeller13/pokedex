@@ -11,7 +11,7 @@ body {
   background-attachment: fixed;
 }
 
-header {
+.header {
   height: 100px;
   background-color: #151029c7;
   backdrop-filter: blur(15px);

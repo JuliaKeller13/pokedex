@@ -82,21 +82,20 @@ function disableLoadingSpinner(){
   document.getElementById("body").classList.remove("of-hidden");
 }
 
-function openWindow(index) {
+function openDialog(index) {
   currentCardIndex = index;
-  // document.getElementById("dialogTitle").innerText += `Hallo`;
   dialogRef.classList.remove("d-none");
   dialogRef.showModal();
 }
 
-function closeWindow() {
+function closeDialog() {
   dialogRef.classList.add("d-none");
   dialogRef.close();
 }
 
 function handleDialogClick(event) {
   if (!event.target.closest(".dialog-mode-inner")) {
-    closeWindow();
+    closeDialog();
   }
 }
 
@@ -110,36 +109,37 @@ function handleKey(event, action) {
   }
 }
 
-document.getElementById("closeDialog")
-  .addEventListener("keydown", function (e) {
-    handleKey(e, closeWindow);
-  });
+document.getElementById("closeDialog").addEventListener("keydown", function (e) {
+  handleKey(e, closeDialog);
+  dialogRef.classList.add("d-none");
+});
+
+// Pfeiltastensteuerung
+document.addEventListener("keydown", function (event) {
+
+  if (!dialogRef.open) return;//weiter nur, wenn Dialog geöffnet ist
+
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    previousCard();
+  }
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    nextCard();
+  }
+});
+
+// vorheriges/nächstes Bild im Dialog
+function previousCard() {
+  currentCardIndex = (currentCardIndex - 1 + allPokemonData.length) % allPokemonData.length;
+  openDialog(currentCardIndex);
+}
+
+function nextCard() {
+  currentCardIndex = (currentCardIndex + 1) % allPokemonData.length;
+  openDialog(currentCardIndex);
+}
 
 //TODO
 //Dialog mit More data
-// // Pfeiltastensteuerung
-// document.addEventListener("keydown", function (event) {
-
-//   if (!dialogRef.open) return;//weiter nur, wenn Dialog geöffnet ist
-
-//   if (event.key === "ArrowLeft") {
-//     event.preventDefault();
-//     previousImg();
-//   }
-
-//   if (event.key === "ArrowRight") {
-//     event.preventDefault();
-//     nextImg();
-//   }
-// });
-
-// // vorheriges/nächstes Bild im Dialog
-// function previousImg() {
-//   currentCardIndex = (currentCardIndex - 1 + imgs.length) % imgs.length;
-//   openWindow(currentCardIndex);
-// }
-
-// function nextImg() {
-//   currentCardIndex = (currentCardIndex + 1) % imgs.length;
-//   openWindow(currentCardIndex);
-// }

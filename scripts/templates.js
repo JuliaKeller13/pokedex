@@ -4,7 +4,7 @@ function getCardsHTML(pokemon, i) {
   const type = pokemon.types[0].type.name;
   const type2 = pokemon.types[1]?.type.name;
 
-  return `<div class="card" id="card" tabindex="0" onclick="openWindow(${i})" onkeydown="handleKey(event, function () { openWindow(${i}); })">
+  return `<div class="card" id="card" tabindex="0" onclick="openDialog(${i})" onkeydown="handleKey(event, function () { openDialog(${i}); })">
             <div class="card-inner" id="cardInner">
                 <div class="card-content">
                     <div class="headline type-${type}">

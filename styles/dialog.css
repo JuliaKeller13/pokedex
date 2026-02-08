@@ -1,7 +1,7 @@
-.dialog-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dialog-mode {
@@ -32,11 +32,22 @@ body:has(dialog[open]) {
 }
 
 .dialog-mode-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.header-inner-dialog {
+.header-dialog-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.close-btn {
-  height: 40px;
+.footer-dialog-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
 }
