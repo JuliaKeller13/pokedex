@@ -203,11 +203,6 @@ h2 {
     gap: 10px;
   }
 
-  .search {
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .logo {
     height: 50px;
   }

@@ -49,7 +49,7 @@
   border: 1px solid rgba(255, 255, 255, 0.473);
   color: rgb(255, 255, 255);
   transition: all 0.3s ease;
-  width: 250px;
+  width: 150px;
 }
 
 .search input:focus {
@@ -59,7 +59,7 @@
 }
 
 .search-btn{
-  padding: 10px 30px;
+  padding: 10px 10px;
   cursor: pointer;
   font-family: "Segoe UI", sans-serif;
   font-weight: bold;
@@ -70,7 +70,8 @@
   border-radius: 6px;
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-  margin-left: 20px;
+  margin-left: 10px;
+  transform: translateY(-1px);
 }
 
 .search-btn:hover {
