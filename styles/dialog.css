@@ -5,8 +5,7 @@
 }
 
 .dialog-mode {
-  width: 900px;
-  height: 700px;
+  width: 700px;
   background: #33354798;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -39,6 +38,7 @@ body:has(dialog[open]) {
 }
 
 .dialog-content {
+  background-image: url("../assets/stardust.png");
 }
 
 .header-dialog {
@@ -53,9 +53,48 @@ body:has(dialog[open]) {
   text-transform: capitalize;
 }
 
-.img-progress{
+.img-progress {
   display: flex;
   justify-content: space-between;
+}
+
+.img-container-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.img-dialog {
+  max-width: 300px;
+  display: flex;
+}
+
+.info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 20px;
+  clip-path: polygon(
+    20px 0%,
+    calc(100% - 20px) 0%,
+    100% 20px,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
+    20px 100%,
+    0% calc(100% - 20px),
+    0% 20px
+  );
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-dialog-inner {
@@ -63,9 +102,5 @@ body:has(dialog[open]) {
   justify-content: center;
   align-items: center;
   gap: 80px;
-  margin: 20px;
-}
-
-.img-dialog {
-  max-width: 300px;
+  margin: 10px;
 }

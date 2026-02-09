@@ -49,7 +49,7 @@ function getStatsHTML(stats) {
 
     statsBoxHTML += `
       <div class="stat-row">
-        <label for="${statName}">${statName}: ${baseValue}</label>
+        <label for="${statName}">${statName}: ${baseValue}</label><br>
         <progress id="${statName}" max="200" value="${baseValue}">${baseValue}</progress>
       </div>
     `;
@@ -65,7 +65,7 @@ function getDialogInnerHTML(pokemon) {
   const statsHTML = getStatsHTML(pokemon.stats);
 
   return `
-    <div class="dialog-mode-inner card-content">
+    <div class="dialog-mode-inner dialog-content">
       <header class="header-dialog">
         <h2 class="dialog-headline">#${pokemon.id} ${pokemon.name}</h2>
         <img class="close-btn" id="closeDialog" src="./assets/close.png" alt="close" onclick="closeDialog()" onkeydown="handleKey(event, closeDialog)" tabindex="0">
@@ -73,15 +73,15 @@ function getDialogInnerHTML(pokemon) {
       <section class="dialog-content">
         <div class="img-container-dialog">
             <img class="img-dialog" src="${image}" alt="${pokemon.name}">
-        </div>
-        <div class="info-box">
             <div class="stats-container">
+                ${statsHTML}
+            </div>
+        </div>
+        <div class="info-box type-${type}">
+            <div class="caract-container">
                 <p><strong>Type:</strong> ${type} ${type2 ? ", " + type2 : ""}</p>
                 <p><strong>Height:</strong> ${pokemon.height / 10} m</p>
                 <p><strong>Weight:</strong> ${pokemon.weight / 10} kg</p>
-            </div>
-            <div class="stats-container">
-                ${statsHTML}
             </div>
         </div>
       </section>
